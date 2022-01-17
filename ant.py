@@ -8,7 +8,8 @@ class Direction(enum.Enum):
     Left = 3
 
 class AntRL:
-    def __init__(self, w, h, x, y):
+    def __init__(self, w, h, x, y, color):
+        self.color = color
         self.width = w
         self.height = h
         self.pos = (x, y)
@@ -82,15 +83,15 @@ class Field:
             prevState = self.Matrix[prevPos[0]][prevPos[1]]
             newState = ant.act(prevState)
             self.Matrix[prevPos[0]][prevPos[1]] = newState
-            events.append((prevPos, self.__getColor(newState)))
+            events.append((prevPos, self.__getColor(newState, ant.color)))
             events.append((ant.pos, Color(255, 0, 0)))
 
         return events
 
-    def __getColor(self, state):
+    def __getColor(self, state, antColor):
         if state == 0:
             return Color(0,0,0)
         elif state == 1:
-            return Color(255,255,255)
+            return antColor
         else:
             return Color(100, 0, 0)
