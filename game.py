@@ -26,7 +26,11 @@ def start():
     scale_width = int(window_width / w)
     scale_height = int(window_height / h)
     field = ant.Field(w, h)
-    ants = [ant.AntRL(w, h, int(h / 2), int(w / 2))]
+    ants = [
+        ant.AntRL(w, h, int(h / 4), int(w / 2), (255, 0, 0)),
+        ant.AntRL(w, h, int(h / 3), int(w / 2), (0, 255, 0)),
+        ant.AntRL(w, h, int(h / 2), int(w / 2), (0, 0, 255))
+    ]
     print(f'ant starts at {ants[0].pos}')
 
     def cycle():
